@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# Daftar warna ANSI
+colors=(
+    "\e[37m" # Putih
+    "\e[31m" # merah
+    "\e[33m" # kuning
+    "\e[32m" # hijau
+    "\e[36m" # cyan
+    "\e[34m" # biru
+    "\e[35m" # ungu
+)
+
+RESET="\e[0m"
+
+# Fungsi animasi teks warna-warni
+typing_rainbow() {
+    local text="$1"
+    local delay=0.05
+    local color_index=0
+    local color_count=${#colors[@]}
+
+    for ((i=0; i<${#text}; i++)); do
+        printf "${colors[$color_index]}%s" "${text:$i:1}"
+        sleep $delay
+        ((color_index=(color_index+1)%color_count))
+    done
+    printf "$RESET\n"
+}
+
+# Fungsi efek mengetik warna-warni
+typing_color() {
+    local text="$1"
+    local delay=0.05
+    local len=${#colors[@]}
+
+    for ((i=0; i<${#text}; i++)); do
+        local color=${colors[$((i % len))]}
+        printf "%b%s%b" "$color" "${text:$i:1}" "$RESET"
+        sleep $delay
+    done
+    printf "\n"
+}
+
+clear
+typing_rainbow "Selamat datang di Terminal Animasi Warna-Warni!"
+typing_rainbow "Efek ini bisa digunakan untuk banner tools."
+echo -e "\e[1m=========================================\e[0m"
+typing_color "WELCOME TO MY AWESOME BANNER"
+typing_color "SCRIPT WITH TYPING COLORFUL EFFECT"
+echo -e "\e[1m=========================================\e[0m"
