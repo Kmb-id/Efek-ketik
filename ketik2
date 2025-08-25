@@ -1,0 +1,89 @@
+#!/bin/bash
+
+# Fungsion/Variable Warna ANSI
+BOLD='\033[1m'     # text tebal
+MIR='\033[3m'      # text miring
+LINE='\033[4m'     # text bergaris
+RED='\033[31m'     # Merah
+GREEN='\033[32m'   # Hijau
+YELLOW='\033[33m'  # Kuning
+BLUE='\033[34m'    # Biru
+CYAN='\033[36m'    # Cyan
+MAGENTA='\033[35m' # Purple/Magenta
+NC='\033[0m'       # Netral Color
+NB='\033[2;90m'    # None+Blank
+
+# Fungsion/Variable untuk efek ketik berwarna
+ketik1() {
+    local text="$1"
+    local color="$2"
+    local delay=${3:-0.05} # Default 0.05 detik per karakter
+    echo -ne "$color"
+    for (( i=0; i<${#text}; i++ )); do
+        printf "%s" "${text:$i:1}"
+        sleep "$delay"
+    done
+    echo -e "$NC"
+}
+
+# Fungsion/Variable untuk efek ketik No Warna
+ketik() {
+    text="$1"
+    delay=${2:-0.05} # Default kecepatan 0.05 detik per karakter
+    for (( i=0; i<${#text}; i++ )); do
+        printf "%s" "${text:$i:1}"
+        sleep "$delay"
+    done
+    printf "\n"
+}
+
+# Contoh penggunaan
+clear
+printf "$NB"
+toilet -f term -F border " ini Hasil contoh dari animasi text warna-warni "
+printf "$NC";sleep 1
+ketik1 "Selamat datang in MY STORY" "$RED" 0.05
+ketik1 " Script / Coding ini akan" "$GREEN" 0.05
+ketik1 " Menampilkan teks animasi berwarna-warni." "$YELLOW" 0.05
+ketik1 " Yang terlihat seperti" "$BLUE" 0.05
+ketik1 " Sedang mengetik sendiri..." "$CYAN" 0.05
+ketik1 " Dengan berbagai gaya & warna 👍" "$MAGENTA" 0.05
+printf "${NB}";sleep 1
+toilet -f term -F border " ini Hasil contoh dari animasi text tanpa warna "
+printf "$NC"
+ketik "Selamat datang in MY STORY" 0.05
+ketik " Script / Coding ini akan " 0.05
+ketik " Menampilkan teks Animasi tak berwarna" 0.05
+ketik " Yang Terlihat seperti mengetik sendiri..." 0.05
+ketik " Tanpa menyetuh Keyboads 😎" 0.05
+printf "${NB}";sleep 1
+toilet -f term -F border " SALAM KENAL UNTUK SEMUANYA "
+printf "${NC}${MIR}"
+ketik """saya L4EROOR
+
+Saya baru belajar dan masih Pemula
+
+masih belajar mengetik...(Hello world)
+
+Di Saat Orang lain sudah bermain jauh
+
+Seperti :"""
+echo -e "${LINE}"
+ketik1 " Ransomware " "${RED}" 0.05
+echo -e "${LINE}"
+ketik1 " Trojan " "${CYAN}" 0.05
+echo -e "${LINE}"
+ketik1 " Ddos " "${BLUE}" 0.05
+echo -e "${LINE}"
+ketik1 " Mysql " "${YELLOW}" 0.05
+echo -e "${LINE}"
+ketik1 " Phising " "${MAGENTA}" 0.05
+echo -e "\n DLL ${NC}${MIR}"
+ketik """( saya cuma sebatas tau kata/istilah tersebut
+dan saya tidak Paham/Mengerti -
+apa arti dari istilah itu)
+
+😭 😭 😭
+
+saya masih stuck di => print ('HELLO WORLD')"""
+sleep 2
