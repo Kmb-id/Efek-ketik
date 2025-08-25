@@ -4,7 +4,14 @@
 ```
 chmod +x *
 ```
-### contoh run :
-```
-./pelangi
-```
+### Macam-macam cara running :
+- 
+  - contoh 1:
+    - ```
+      ./ketik2
+      ```
+  - contoh 2:
+    - ```
+      ./pelangi
+      ```
+
